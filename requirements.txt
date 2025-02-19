@@ -1,0 +1,13 @@
+fastapi 
+uvicorn
+langchain
+llama-index
+openai
+torch
+transformers
+faiss-cpu
+chromadb
+scrapy
+streamlit
+ipykernel
+-e .
