@@ -1,13 +1,16 @@
-fastapi 
-uvicorn
-langchain
-llama-index
-openai
+requests
+beautifulsoup4
 torch
 transformers
+sentence-transformers
+langchain
+langchain-community
+langchain-huggingface
 faiss-cpu
-chromadb
-scrapy
-streamlit
+chromadb  
+fastapi
+uvicorn
+numpy
+pandas
 ipykernel
--e .
+#-e .
