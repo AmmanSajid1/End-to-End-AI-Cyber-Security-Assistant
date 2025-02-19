@@ -59,21 +59,37 @@ def get_tactic_data(tactic_urls):
         
 
 def get_techniques_data(URL_list):
-    data = []
-
     for url in URL_list:
+
         response = requests.get(url)
         soup = BeautifulSoup(response.text, "html.parser")
-        
-        for row in soup.select("tr", class_="technique"):
+            # Find technique table
+        table = soup.find("table", class_="table-techniques")
+
+        # Extract rows
+        rows = table.find("tbody").find_all("tr")
+
+        # Data storage
+        techniques_data = []
+        current_technique = None  # To track parent techniques
+
+        for row in rows:
             cols = row.find_all("td")
             
-            for col in cols[1:]:
-                data.append(col.text.strip())
+            # Check if it's a main technique
+            if "technique" in row.get("class", []) and "sub" not in row.get("class", []):
+                technique_name = cols[1].text.strip()
+                description = cols[2].text.strip()
+                current_technique = technique_name  # Store as parent
+                techniques_data.append(technique_name + ": " + description)
+            
+            # Check if it's a sub-technique
+            elif "sub" in row.get("class", []) and "technique" in row.get("class", []):
+                sub_name = cols[2].text.strip()
+                sub_description = cols[3].text.strip()
+                techniques_data.append(current_technique +" - " + sub_name + ": " + sub_description)
 
-    print("Techniques Data from Mitre Scraped")
-    
-    return data
+    return techniques_data
                 
 
 
