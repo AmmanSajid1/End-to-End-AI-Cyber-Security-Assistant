@@ -1,11 +1,15 @@
 from fastapi import FastAPI
-from src.backend.services import retrieve_relevant_docs
+from pydantic import BaseModel
+from src.backend.services import retrieve_and_generate_response
 
 app = FastAPI()
 
+class QueryRequest(BaseModel):
+    query: str
+
 @app.post("/search/")
-def search(query: str):
-    results = retrieve_relevant_docs(query)
+def search(request: QueryRequest): 
+    results = retrieve_and_generate_response(request.query)
     return {"results": results}
 
 if __name__ == "__main__":

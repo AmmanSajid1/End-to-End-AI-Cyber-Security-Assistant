@@ -1,8 +1,13 @@
 import streamlit as st
 import requests
+import os
+
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # FastAPI endpoint (update if needed)
-API_URL = "http://127.0.0.1:8000/search/"
+API_URL = os.getenv("API_URL", "http://127.0.0.1:8000/search/")
 
 st.set_page_config(page_title="MITRE Chatbot", layout="wide")
 
@@ -28,7 +33,7 @@ if user_query:
 
     # Send query to FastAPI backend
     response = requests.post(API_URL, json={"query": user_query})
-    bot_reply = response.json().get("answer", "Error: No response")
+    bot_reply = response.json().get("results", "Error: No response")
 
     # Display bot response
     st.session_state["messages"].append({"role": "assistant", "content": bot_reply})
