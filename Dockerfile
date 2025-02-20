@@ -6,7 +6,7 @@ COPY . /app
 RUN pip install --no-cache-dir - r requirements.txt
 RUN apt update && apt install -y supervisor
 
-RUN mkir -p /var/log/supervisor 
+RUN mkdir -p /var/log/supervisor 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf 
 
 EXPOSE 8000 8501 
