@@ -1,14 +1,24 @@
-FROM python:3.10-slim-buster 
+FROM python:3.10-slim-buster
 
 WORKDIR /app
-COPY . /app
 
-RUN pip install --no-cache-dir - r requirements.txt
+# Install necessary packages
 RUN apt update && apt install -y supervisor
 
-RUN mkdir -p /var/log/supervisor 
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf 
+# Ensure Supervisor log directory exists
+RUN mkdir -p /var/log/supervisor  
 
-EXPOSE 8000 8501 
+# Copy application code
+COPY . /app
 
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy Supervisor config file (Ensure it exists in the repo)
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf  
+
+# Expose ports
+EXPOSE 8000 8501
+
+# Start Supervisor to manage processes
+CMD ["supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
