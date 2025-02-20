@@ -3,7 +3,7 @@ from src.backend.services import retrieve_relevant_docs
 
 app = FastAPI()
 
-@app.get("/search/")
+@app.post("/search/")
 def search(query: str):
     results = retrieve_relevant_docs(query)
     return {"results": results}
