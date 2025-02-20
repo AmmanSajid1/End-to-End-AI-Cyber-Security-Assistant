@@ -154,13 +154,13 @@ Go to **GitHub Repo → Settings → Secrets** and add the following:
 
 ## 🛠️ Technologies Used
 
- - FastAPI - Backend framework
- - Streamlit - Frontend UI
- - FAISS - Vector search database
- - OpenAI GPT - LLM for response generation
- - Docker - Containerization
- - AWS EC2 & ECR - Cloud deployment
- - GitHub Actions - CI/CD automation
+ - **FastAPI** - Backend framework
+ - **Streamlit** - Frontend UI
+ - **FAISS** - Vector search database
+ - **OpenAI GPT** - LLM for response generation
+ - **Docker** - Containerization
+ - **AWS EC2 & ECR** - Cloud deployment
+ - **GitHub Actions** - CI/CD automation
 
 ## 📜 License
 This project is **open-source** and licensed under the **MIT License**.
