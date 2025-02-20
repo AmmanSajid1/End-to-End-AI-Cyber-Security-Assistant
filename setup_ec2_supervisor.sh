@@ -9,7 +9,7 @@ SUPERVISOR_CONF="/etc/supervisor/conf.d/mitre_chatbot.conf"
 
 sudo tee $SUPERVISOR_CONF > /dev/null <<EOL
 [program:mitre-chatbot]
-command=docker run --rm -p 8000:8000 -p 8501:8501 --name mitre-chatbot 464209272334.dkr.ecr.us-east-1.amazonaws.com/mitre-chatbot/mitre-chatbot:latest
+command=docker run --rm -p 8000:8000 -p 8501:8501 --name mitre-chatbot mitre-chatbot:latest
 autostart=true
 autorestart=true
 stderr_logfile=/var/log/mitre-chatbot.err.log
