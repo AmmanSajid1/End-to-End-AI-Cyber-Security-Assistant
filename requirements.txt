@@ -13,4 +13,5 @@ uvicorn
 numpy
 pandas
 ipykernel
+streamlit
 #-e .
